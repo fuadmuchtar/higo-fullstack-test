@@ -1,0 +1,234 @@
+{
+    "info": {
+        "name": "Higo Customer API",
+        "description": "API documentation for Higo Customer Management System",
+        "version": "1.0.0",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Customer Management",
+            "item": [
+                {
+                    "name": "Get Customers",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/customers?page=1&search=",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "customers"
+                            ],
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1",
+                                    "description": "Page number for pagination (default: 1)"
+                                },
+                                {
+                                    "key": "search",
+                                    "value": "",
+                                    "description": "Search term for filtering customers by name, email, brand device, or location"
+                                }
+                            ]
+                        },
+                        "description": "Retrieve a paginated list of customers with optional search functionality.\n\n**Query Parameters:**\n- `page` (optional): Page number for pagination (default: 1)\n- `search` (optional): Search term to filter customers by:\n  - Name\n  - Email\n  - Brand Device\n  - Name of Location\n\n**Features:**\n- Pagination with 10 items per page\n- Case-insensitive search\n- Sorted by Date (newest first)\n- Returns total count of matching records"
+                    },
+                    "response": [
+                        {
+                            "name": "Success Response",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{base_url}}/api/customers?page=1&search=",
+                                    "host": [
+                                        "{{base_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "customers"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "page",
+                                            "value": "1"
+                                        },
+                                        {
+                                            "key": "search",
+                                            "value": ""
+                                        }
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"data\": [\n    {\n      \"_id\": \"60f7b1234567890123456789\",\n      \"Name\": \"John Doe\",\n      \"Email\": \"john.doe@example.com\",\n      \"Brand Device\": \"iPhone\",\n      \"Name of Location\": \"Jakarta\",\n      \"Location Type\": \"Urban\",\n      \"gender\": \"Male\",\n      \"Date\": \"2025-07-10T10:30:00.000Z\"\n    },\n    {\n      \"_id\": \"60f7b1234567890123456790\",\n      \"Name\": \"Jane Smith\",\n      \"Email\": \"jane.smith@example.com\",\n      \"Brand Device\": \"Samsung\",\n      \"Name of Location\": \"Bandung\",\n      \"Location Type\": \"Urban\",\n      \"gender\": \"Female\",\n      \"Date\": \"2025-07-09T14:20:00.000Z\"\n    }\n  ],\n  \"totalData\": 1245\n}"
+                        },
+                        {
+                            "name": "Search Example",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{base_url}}/api/customers?page=1&search=john",
+                                    "host": [
+                                        "{{base_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "customers"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "page",
+                                            "value": "1"
+                                        },
+                                        {
+                                            "key": "search",
+                                            "value": "john"
+                                        }
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"data\": [\n    {\n      \"_id\": \"60f7b1234567890123456789\",\n      \"Name\": \"John Doe\",\n      \"Email\": \"john.doe@example.com\",\n      \"Brand Device\": \"iPhone\",\n      \"Name of Location\": \"Jakarta\",\n      \"Location Type\": \"Urban\",\n      \"gender\": \"Male\",\n      \"Date\": \"2025-07-10T10:30:00.000Z\"\n    }\n  ],\n  \"totalData\": 1\n}"
+                        },
+                        {
+                            "name": "Error Response",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{base_url}}/api/customers",
+                                    "host": [
+                                        "{{base_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "customers"
+                                    ]
+                                }
+                            },
+                            "status": "Internal Server Error",
+                            "code": 500,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"message\": \"Internal Server Error\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Get Customer Overview",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/overview",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "overview"
+                            ]
+                        },
+                        "description": "Retrieve summarized customer analytics and statistics.\n\n**Features:**\n- Customer count by location type\n- Gender distribution\n- Total unique customers\n- Data grouped by unique email addresses\n- Sorted location data by count (descending)\n\n**Data Processing:**\n- Eliminates duplicate customers based on email\n- Filters out invalid gender values\n- Handles null/undefined location types\n- Provides both processed and raw data"
+                    },
+                    "response": [
+                        {
+                            "name": "Success Response",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{base_url}}/api/overview",
+                                    "host": [
+                                        "{{base_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "overview"
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"locationType\": {\n    \"labels\": [\"Urban\", \"Rural\", \"Suburban\", \"Unknown\"],\n    \"values\": [850, 250, 140, 5],\n    \"raw\": [\n      {\n        \"_id\": \"Urban\",\n        \"count\": 850\n      },\n      {\n        \"_id\": \"Rural\",\n        \"count\": 250\n      },\n      {\n        \"_id\": \"Suburban\",\n        \"count\": 140\n      },\n      {\n        \"_id\": \"Unknown\",\n        \"count\": 5\n      }\n    ]\n  },\n  \"genderCount\": {\n    \"male\": 640,\n    \"female\": 605\n  },\n  \"totalUser\": 1245\n}"
+                        },
+                        {
+                            "name": "Error Response",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{base_url}}/api/overview",
+                                    "host": [
+                                        "{{base_url}}"
+                                    ],
+                                    "path": [
+                                        "api",
+                                        "overview"
+                                    ]
+                                }
+                            },
+                            "status": "Internal Server Error",
+                            "code": 500,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                }
+                            ],
+                            "body": "{\n  \"message\": \"Internal Server Error\"\n}"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "variable": [
+        {
+            "key": "base_url",
+            "value": "http://localhost:3000",
+            "type": "string"
+        }
+    ]
+}
