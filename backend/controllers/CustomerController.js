@@ -9,6 +9,14 @@ class CustomerController {
             res.status(500).json({message: "Internal server error"})
         }
     }
+
+    static async getTotalGender(req, res) {
+        try {
+            const data = await CustomerModel.getGenders()
+        } catch (error) {
+            res.status(500).json({message: "Internal server error"})
+        }
+    }
 }
 
 module.exports = CustomerController
