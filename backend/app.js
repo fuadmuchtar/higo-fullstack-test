@@ -2,17 +2,17 @@ if (process.env.NODE_ENV !== 'production'){
     require('dotenv').config()
 }
 
-const cors = require('cors')
-const express = require('express')
-const app = express()
+const express = require('express');
+const dotenv = require('dotenv');
+const cors = require('cors');
+const customerRoutes = require('./routes/customerRoutes');
 
-const router = require('./routers')
+dotenv.config();
 
-app.use(express.urlencoded({extended:false}))
-app.use(express.json())
-app.use(cors())
+const app = express();
+app.use(cors());
+app.use(express.json());
 
-app.use('/api', router)
+app.use('/api', customerRoutes);
 
-
-module.exports = app
+module.exports = app;
